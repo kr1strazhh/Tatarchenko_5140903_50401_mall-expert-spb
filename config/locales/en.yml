@@ -1,0 +1,66 @@
+en:
+  mall_expert:
+    title: "MallExpert SPb"
+    nav:
+      work: "Mall scoring"
+      profile: "Profile"
+      login: "Sign in"
+      signup: "Sign up"
+      logout: "Logout"
+    hero:
+      eyebrow: "Expert evaluation of shopping malls"
+      heading: "Rate Saint Petersburg malls on a 1 to 100 scale"
+      text: "Choose a category, review the mall card and submit a precise expert score with a comment."
+    auth:
+      email: "E-mail"
+      password: "Password"
+      password_confirmation: "Password confirmation"
+      login_title: "Sign in"
+      signup_title: "Create account"
+      login_button: "Sign in"
+      signup_button: "Create account"
+      required: "Please sign in to access the work area."
+      invalid_credentials: "Invalid e-mail or password."
+      login_success: "Signed in successfully."
+      logout_success: "You have logged out."
+      signup_success: "Account created."
+    work:
+      theme: "Category"
+      choose_theme: "Choose category"
+      scale: "Rating scale"
+      empty_title: "Choose category"
+      empty_text: "After choosing a category, the first unrated shopping mall will appear here."
+      average: "Average rating"
+      your_rating: "My rating"
+      comment: "Comment"
+      submit: "Save rating"
+    profile:
+      heading: "My expert evaluations"
+      subtitle: "Your scores, comments, category breakdown and CSV export live here."
+      export: "Download CSV"
+      total: "Total ratings"
+      average: "Average rating"
+      themes: "Rated themes"
+      best: "Top mall"
+      recent: "Recent ratings"
+      by_theme: "Ratings by category"
+      mall: "Mall"
+      theme: "Category"
+      rating: "Rating"
+      comment: "Comment"
+      no_comment: "No comment"
+      empty: "No evaluations yet. Open the work area and rate your first mall."
+    api:
+      choose_theme: "Choose a category first."
+      theme_completed: "All shopping malls in this category have already been evaluated."
+      saved: "Evaluation saved."
+      not_found: "Mall item not found."
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+      evaluation:
+        rating: "Rating"
+        comment: "Comment"

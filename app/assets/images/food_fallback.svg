@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" fill="none">
+  <rect width="960" height="540" fill="#eef2f7"/>
+  <rect x="320" y="120" width="320" height="190" rx="14" fill="#d8e1e5"/>
+  <rect x="360" y="170" width="70" height="140" fill="#153b44"/>
+  <rect x="455" y="145" width="70" height="165" fill="#153b44"/>
+  <rect x="550" y="195" width="50" height="115" fill="#153b44"/>
+  <path d="M300 330h360" stroke="#d89438" stroke-width="16" stroke-linecap="round"/>
+  <text x="480" y="470" text-anchor="middle" font-size="46" fill="#153b44" font-family="Arial, sans-serif" font-weight="700">
+    MallExpert SPb
+  </text>
+  <text x="480" y="510" text-anchor="middle" font-size="28" fill="#4b5563" font-family="Arial, sans-serif">
+    Нет изображения
+  </text>
+</svg>

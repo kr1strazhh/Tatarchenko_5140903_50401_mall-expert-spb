@@ -1,0 +1,73 @@
+ru:
+  mall_expert:
+    title: "MallExpert SPb"
+    nav:
+      work: "Оценка ТЦ"
+      profile: "Кабинет"
+      login: "Войти"
+      signup: "Регистрация"
+      logout: "Выйти"
+    hero:
+      eyebrow: "Экспертная оценка торговых центров"
+      heading: "Оцените ТЦ Санкт-Петербурга по шкале от 1 до 100"
+      text: "Выберите категорию, изучите карточку торгового центра и поставьте точную экспертную оценку с комментарием."
+    auth:
+      email: "E-mail"
+      password: "Пароль"
+      password_confirmation: "Повтор пароля"
+      login_title: "Вход в систему"
+      signup_title: "Регистрация пользователя"
+      login_button: "Войти"
+      signup_button: "Создать аккаунт"
+      required: "Для доступа к рабочей области необходимо войти."
+      invalid_credentials: "Неверный e-mail или пароль."
+      login_success: "Вход выполнен."
+      logout_success: "Вы вышли из системы."
+      signup_success: "Аккаунт создан."
+    work:
+      theme: "Категория"
+      choose_theme: "Выберите категорию"
+      scale: "Шкала оценки"
+      empty_title: "Выберите категорию"
+      empty_text: "После выбора категории здесь появится первый неоцененный торговый центр."
+      average: "Средняя оценка"
+      your_rating: "Моя оценка"
+      comment: "Комментарий"
+      submit: "Сохранить оценку"
+    profile:
+      heading: "Мои экспертные оценки"
+      subtitle: "Здесь собраны ваши оценки, комментарии и быстрый экспорт в CSV."
+      export: "Скачать CSV"
+      total: "Всего оценок"
+      average: "Средняя оценка"
+      themes: "Тем оценено"
+      best: "Лучший ТЦ"
+      recent: "Последние оценки"
+      by_theme: "Оценки по категориям"
+      mall: "ТЦ/ТРЦ"
+      theme: "Категория"
+      rating: "Оценка"
+      comment: "Комментарий"
+      no_comment: "Без комментария"
+      empty: "Оценок пока нет. Перейдите в рабочую область и оцените первый торговый центр."
+    api:
+      choose_theme: "Сначала выберите категорию."
+      theme_completed: "В этой категории все торговые центры уже оценены."
+      saved: "Оценка сохранена."
+      not_found: "Торговый центр не найден."
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+      evaluation:
+        rating: "Оценка"
+        comment: "Комментарий"
+    errors:
+      models:
+        evaluation:
+          attributes:
+            rating:
+              greater_than_or_equal_to: "должна быть не меньше 1"
+              less_than_or_equal_to: "должна быть не больше 100"

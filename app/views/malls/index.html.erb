@@ -1,0 +1,61 @@
+<main class="mall-shell" data-mall-workspace>
+  <section class="workspace-hero">
+    <div class="container">
+      <p class="eyebrow"><%= t("mall_expert.hero.eyebrow") %></p>
+      <h1><%= t("mall_expert.hero.heading") %></h1>
+      <p><%= t("mall_expert.hero.text") %></p>
+    </div>
+  </section>
+
+  <section class="container workspace-grid">
+    <aside class="control-panel">
+      <label for="theme-select"><%= t("mall_expert.work.theme") %></label>
+      <select id="theme-select">
+        <option value=""><%= t("mall_expert.work.choose_theme") %></option>
+        <% @themes.each do |theme| %>
+          <option value="<%= theme.id %>"><%= theme.localized_name %></option>
+        <% end %>
+      </select>
+
+      <div class="panel-stat">
+        <span><%= t("mall_expert.work.scale") %></span>
+        <strong>1–100</strong>
+      </div>
+    </aside>
+
+    <section class="evaluation-card" id="mall-card">
+      <div class="empty-state" id="empty-state">
+        <h2><%= t("mall_expert.work.empty_title") %></h2>
+        <p><%= t("mall_expert.work.empty_text") %></p>
+      </div>
+
+      <article class="mall-card-body is-hidden" id="mall-card-body">
+        <img id="mall-image" alt="">
+        <div class="mall-content">
+          <p class="mall-theme" id="mall-theme"></p>
+          <h2 id="mall-name"></h2>
+          <p id="mall-address" class="address"></p>
+          <p id="mall-description"></p>
+          <p class="rating-meta">
+            <%= t("mall_expert.work.average") %>:
+            <span id="average-rating">—</span>
+          </p>
+        </div>
+      </article>
+
+      <form class="evaluation-form is-hidden" id="evaluation-form">
+        <input type="hidden" id="mall-item-id">
+        <label class="range-label" for="rating-range">
+          <span><%= t("mall_expert.work.your_rating") %></span>
+          <strong id="rating-output">50</strong>
+        </label>
+        <input id="rating-range" class="sticker-range" type="range" min="1" max="100" value="50">
+
+        <label for="comment"><%= t("mall_expert.work.comment") %></label>
+        <textarea id="comment" rows="4" maxlength="1000"></textarea>
+
+        <button type="submit" class="primary-button"><%= t("mall_expert.work.submit") %></button>
+      </form>
+    </section>
+  </section>
+</main>

@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>MallExpert SPb - курсовой проект</title>
+  <style>@page { margin: 15mm 13mm; size: A4; }
+* { box-sizing: border-box; }
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 10.4pt;
+  line-height: 1.32;
+  color: #111827;
+  background: #ffffff;
+}
+h1, h2, h3, h4 { font-family: Georgia, "Times New Roman", serif; color: #111827; page-break-after: avoid; }
+h1 { font-size: 21pt; margin: 0 0 9pt; text-align: center; }
+h2 { font-size: 15.5pt; margin: 14pt 0 7pt; }
+h3 { font-size: 12.5pt; margin: 10pt 0 6pt; }
+h4 { font-size: 11pt; margin: 8pt 0 5pt; }
+p { margin: 0 0 6pt; text-align: justify; }
+ul, ol { margin: 0 0 6pt 18pt; padding: 0; }
+li { margin: 2pt 0; text-align: justify; }
+table { width: 100%; border-collapse: collapse; margin: 8pt 0 10pt; page-break-inside: avoid; }
+th, td { border: 1px solid #9ca3af; padding: 4pt 5pt; vertical-align: top; font-size: 8.7pt; line-height: 1.18; }
+th { background: #f3f4f6; font-weight: 700; }
+code { font-family: Menlo, Consolas, monospace; font-size: 8pt; }
+pre {
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 5pt;
+  padding: 5pt;
+  margin: 6pt 0 8pt;
+  white-space: pre-wrap;
+  page-break-inside: auto;
+}
+pre code { font-size: 6.4pt; line-height: 1.16; }
+img { display: block; max-width: 100%; height: auto; border: 1px solid #d1d5db; }
+figure { margin: 8pt 0 13pt; page-break-inside: avoid; }
+figcaption { margin-top: 3pt; text-align: center; font-size: 8.8pt; color: #374151; }
+.title-page { height: 700pt; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
+.title-page p { text-align: center; }
+.assignment p { text-align: left; }
+.signature { margin-top: 18pt; display: grid; grid-template-columns: 1fr 1fr; gap: 24pt; }
+.signature p { text-align: left; }
+.page-break { page-break-before: always; break-before: page; }
+.center { text-align: center; }
+.right { text-align: right; }
+.small { font-size: 8.8pt; }
+.no-break { page-break-inside: avoid; }
+@media print { a[href]::after { content: none; } }
+</style>
+</head>
+<body>
+<div class="title-page">
+
+<div>
+
+<p>Санкт-Петербургский политехнический университет Петра Великого<br>Институт компьютерных наук и кибербезопасности<br>Высшая школа прикладной информатики</p>
+</div>
+
+<div>
+
+<h1>КУРСОВОЙ ПРОЕКТ</h1>
+<h2>Разработка WEB-приложения на Ruby on Rails</h2>
+<p>по дисциплине «Методики разработки современных WEB-приложений»</p>
+</div>
+
+<div>
+
+<p class="right">Выполнил<br>
+студент гр. 5140903/50401<br>
+<strong>Татарченко Андрей Александрович</strong></p>
+
+<p class="right">Преподаватель<br>
+доцент, к.т.н.<br>
+<strong>Иванищев Алексей Вячеславович</strong></p>
+
+</div>
+
+<div>
+
+<p>Санкт-Петербург<br>2026</p>
+</div>
+
+</div>
+
+<div class="page-break"></div>
+
+<h1>ЗАДАНИЕ</h1>
+<p>на выполнение курсового проекта</p>
+<div class="assignment">
+
+<p>Студенту: <strong>Татарченко Андрей Александрович</strong><br>Группа: <strong>5140903/50401</strong></p>
+<ol>
+<li><strong>Тема курсового проекта:</strong> Разработка WEB-приложения на Ruby on Rails.</li>
+<li><strong>Срок сдачи студентом законченной работы:</strong> 25.05.2026.</li>
+<li><strong>Исходные данные к работе:</strong> требования дисциплины «Методики разработки современных WEB-приложений»; методические материалы по Ruby on Rails; документация Ruby on Rails 8, PostgreSQL, Active Record, I18n и Fetch API; исходные примеры курсовых проектов; локально разработанное приложение MallExpert SPb.</li>
+<li><strong>Содержание пояснительной записки:</strong> введение; постановка задачи и требования; выбор технологий; проектирование MVC-приложения и базы данных; реализация пользовательского интерфейса, сессионной авторизации, API, локализации и CSV-экспорта; тестирование и запуск; результаты работы; заключение; список источников; приложения.</li>
+<li><strong>Перечень графического материала:</strong> схема базы данных; схема пользовательского сценария; скриншоты входа, главной рабочей области, оценки ТЦ, личного кабинета и английской локализации; листинги ключевых файлов проекта.</li>
+<li><strong>Консультанты:</strong> доцент, к.т.н. Иванищев Алексей Вячеславович.</li>
+</ol>
+<p>Дата получения задания: <strong>03.02.2026</strong></p>
+<div class="signature">
+
+<p>Преподаватель<br><br>____________________ / А.В. Иванищев /</p>
+
+<p>Задание принял к исполнению<br><br>____________________ / А.А. Татарченко /<br>Дата: 17.02.2026</p>
+
+</div>
+
+</div>
+
+<div class="page-break"></div>
+
+<h1>Аннотация</h1>
+<p>В курсовом проекте я разработал WEB-приложение <strong>MallExpert SPb</strong> на фреймворке <strong>Ruby on Rails 8</strong> для экспертной оценки и выбора торговых центров Санкт-Петербурга. Я выбрал предметную область ТЦ и ТРЦ, потому что для нее естественно сравнивать объекты по совокупности признаков: расположение, удобство, торговый состав, семейный досуг и общее качество посещения. В приложении пользователь регистрируется, входит в систему, выбирает категорию торговых центров, получает первую неоцененную карточку и выставляет экспертную оценку плавным интерактивным ползунком от 1 до 100.</p>
+<p>В качестве хранилища я использовал PostgreSQL, а серверную часть построил на MVC-архитектуре Rails. Аутентификацию я реализовал вручную через <code>has_secure_password</code>, <code>bcrypt</code>, <code>SessionsController</code> и хранение идентификатора пользователя в <code>session[:user_id]</code>. Для динамики интерфейса я написал Vanilla JS-модуль на Fetch API, который получает карточку ТЦ и сохраняет оценку без перезагрузки страницы. Также я реализовал русскую и английскую локализацию, личный кабинет пользователя, расчет средней оценки и экспорт пользовательских оценок в CSV.</p>
+<div class="page-break"></div>
+
+<h1>Содержание</h1>
+<ol>
+<li>Введение<br>1.1 Актуальность темы<br>1.2 Цель и задачи моей работы<br>1.3 Объект, предмет и краткое описание проекта  </li>
+<li>Постановка задачи и требования<br>2.1 Функциональные требования<br>2.2 Нефункциональные требования<br>2.3 Пользовательские сценарии  </li>
+<li>Выбор технологий и инструментов<br>3.1 Обоснование Ruby on Rails 8<br>3.2 Используемый стек  </li>
+<li>Проектирование<br>4.1 Архитектура MVC<br>4.2 Маршрутизация<br>4.3 Модель данных<br>4.4 Схема пользовательского сценария  </li>
+<li>Реализация проекта<br>5.1 Сессионная авторизация<br>5.2 Модели и ограничения данных<br>5.3 Интернационализация RU/EN<br>5.4 API и асинхронный интерфейс<br>5.5 Личный кабинет и CSV-экспорт<br>5.6 Начальные данные  </li>
+<li>Описание пользовательского интерфейса<br>6.1 Вход и регистрация<br>6.2 Рабочая область эксперта<br>6.3 Личный кабинет<br>6.4 Английская локализация  </li>
+<li>Тестирование и отладка<br>7.1 Unit-тесты<br>7.2 Интеграционные тесты<br>7.3 Smoke-test  </li>
+<li>Запуск и развертывание<br>8.1 Локальный запуск<br>8.2 Docker-запуск  </li>
+<li>Результаты моей работы  </li>
+<li>Заключение  </li>
+<li>Список использованных источников  </li>
+<li>Приложения</li>
+</ol>
+<div class="page-break"></div>
+
+<h2>1. Введение</h2>
+<h3>1.1 Актуальность темы</h3>
+<p>Современные WEB-приложения часто решают задачу экспертного выбора: пользователь не просто просматривает объект, а последовательно оценивает его по заданной шкале, накапливает персональную статистику и получает возможность вернуться к результатам. Такой подход используется в рекомендательных системах, сервисах отзывов, образовательных тренажерах и внутренних корпоративных инструментах. Я выбрал эту идею как основу курсового проекта, потому что она позволяет показать полный цикл разработки: от проектирования структуры данных до динамического интерфейса и сохранения результатов в базе.</p>
+<p>Предметной областью моей работы стали торговые центры Санкт-Петербурга. В отличие от абстрактных карточек или простых изображений, ТЦ имеют понятные пользователю характеристики: адрес, назначение, формат посещения, развлекательная инфраструктура, удобство для семейного досуга и масштаб комплекса. Поэтому оценка торговых центров хорошо подходит для демонстрации экспертной системы: пользователь может сравнивать реальные объекты и фиксировать собственное мнение.</p>
+<p>Отдельно я сделал акцент на шкале оценки от 1 до 100. В примерах лабораторных и курсовых работ часто встречается дискретная шкала 1-5 или 1-10, но она грубая: оценка 4 и 5 не дает пространства для более точного экспертного различия. В моем приложении я использовал HTML5 <code>range</code>, похожий по ощущению на интерактивные стикеры-опросы в социальных сетях. Такой ползунок позволяет быстро поставить не только условные «хорошо» или «отлично», но и более точную оценку, например 76, 88 или 94 балла.</p>
+<h3>1.2 Цель и задачи моей работы</h3>
+<p>Цель моей работы - разработать WEB-приложение на Ruby on Rails 8 и PostgreSQL для экспертной оценки торговых центров Санкт-Петербурга с асинхронным интерфейсом, ручной сессионной авторизацией, локализацией и экспортом результатов.</p>
+<p>Для достижения цели я поставил и выполнил следующие задачи:</p>
+<ul>
+<li>спроектировал структуру проекта на Ruby on Rails 8;</li>
+<li>настроил подключение PostgreSQL и миграции базы данных;</li>
+<li>разработал модели <code>User</code>, <code>Theme</code>, <code>MallItem</code> и <code>Evaluation</code>;</li>
+<li>реализовал ручную регистрацию и вход через <code>has_secure_password</code>;</li>
+<li>настроил маршрутизацию с локалью <code>/:locale</code> для страниц и отдельный JSON API;</li>
+<li>сделал рабочую область, где пользователь выбирает тему и получает первый неоцененный ТЦ;</li>
+<li>реализовал плавный ползунок оценки от 1 до 100 и сохранение комментария;</li>
+<li>добавил личный кабинет с таблицей оценок, средним значением и группировкой по темам;</li>
+<li>реализовал выгрузку персональных оценок в <code>my_evaluations.csv</code>;</li>
+<li>подготовил демо-данные на 10 реальных ТЦ Санкт-Петербурга;</li>
+<li>написал тесты для моделей и интеграционного пользовательского сценария;</li>
+<li>подготовил Dockerfile, инструкции запуска, скриншоты и итоговую пояснительную записку.</li>
+</ul>
+<h3>1.3 Объект, предмет и краткое описание проекта</h3>
+<p>Объектом моей работы является процесс разработки современных WEB-приложений на MVC-фреймворках. Предметом работы является реализация экспертной системы оценки объектов на Ruby on Rails с серверной логикой, клиентской динамикой, хранением данных и локализацией интерфейса.</p>
+<p>Итоговое приложение получило название <strong>MallExpert SPb</strong>. Пользователь заходит на сайт, создает учетную запись или использует демо-пользователя, выбирает категорию торговых центров и начинает оценку. Сервер выдает первый торговый центр из выбранной категории, который еще не оценен текущим пользователем. После сохранения оценки система сразу запрашивает следующий объект. Когда все ТЦ в категории оценены, пользователь получает сообщение о завершении.</p>
+<p>Я сделал приложение не как статическую демонстрацию, а как законченный учебный продукт: в нем есть база данных, миграции, сиды, авторизация, валидации, API, JavaScript, локализация, тесты, Dockerfile и полный отчет. Такой состав соответствует задаче курсового проекта: показать, что разработчик умеет собрать WEB-систему целиком, а не только отдельные страницы.</p>
+<h2>2. Постановка задачи и требования</h2>
+<h3>2.1 Функциональные требования</h3>
+<p>В начале работы я сформулировал набор функциональных требований, которые должны были быть проверяемыми по коду и по интерфейсу.</p>
+<table>
+<thead>
+<tr>
+<th>N</th>
+<th>Требование</th>
+<th>Реализация в проекте</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Пользователь может зарегистрироваться по e-mail и паролю</td>
+<td><code>UsersController</code>, <code>has_secure_password</code>, форма <code>users/new</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Пользователь может войти и выйти из системы</td>
+<td><code>SessionsController</code>, <code>session[:user_id]</code>, кнопка выхода</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Неавторизованный пользователь не может пользоваться рабочей областью</td>
+<td><code>ApplicationController#authorize</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Пользователь выбирает категорию ТЦ</td>
+<td><code>Theme</code>, селект на странице <code>malls/index</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Система выдает первый неоцененный ТЦ в категории</td>
+<td><code>Api::V1::MallsApiController#index</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Пользователь ставит оценку от 1 до 100</td>
+<td><code>input type=&quot;range&quot;</code>, модель <code>Evaluation</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Пользователь оставляет текстовый комментарий</td>
+<td>поле <code>comment</code> в форме и БД</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Сохранение оценки выполняется без перезагрузки страницы</td>
+<td><code>fetch()</code> в <code>malls_evaluation.js</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Пользователь видит личный кабинет с оценками</td>
+<td><code>ProfilesController#show</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Пользователь может выгрузить оценки в CSV</td>
+<td><code>ProfilesController#export</code>, <code>Evaluation.to_csv</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Интерфейс поддерживает русский и английский языки</td>
+<td><code>config/locales/ru.yml</code>, <code>config/locales/en.yml</code></td>
+</tr>
+</tbody></table>
+<p>Особенно важным требованием я считал уникальность оценки: один пользователь должен иметь только одну запись <code>Evaluation</code> для одного ТЦ. Это требование я закрепил сразу на двух уровнях: валидацией Active Record и уникальным индексом базы данных.</p>
+<h3>2.2 Нефункциональные требования</h3>
+<p>Нефункциональные требования определяют не отдельные кнопки, а качество готового приложения. Я выделил следующие критерии:</p>
+<ul>
+<li><strong>надежность данных:</strong> оценки должны сохраняться в PostgreSQL, а диапазон <code>1..100</code> должен контролироваться приложением и базой;</li>
+<li><strong>безопасность:</strong> пароли нельзя хранить в открытом виде, поэтому я использовал <code>bcrypt</code> и <code>password_digest</code>;</li>
+<li><strong>удобство интерфейса:</strong> основной сценарий оценки должен выполняться без полной перезагрузки страницы;</li>
+<li><strong>расширяемость:</strong> предметную область можно расширить новыми категориями и торговыми центрами через сиды или админский слой;</li>
+<li><strong>локализация:</strong> пользователь должен иметь доступ к русской и английской версии интерфейса;</li>
+<li><strong>воспроизводимость:</strong> проект должен запускаться локально по инструкции и в Docker-контейнере;</li>
+<li><strong>проверяемость:</strong> в проекте должны быть тесты, которые подтверждают модельные ограничения и API-сценарий.</li>
+</ul>
+<p>Я также учитывал учебное требование: структура проекта должна быть понятной преподавателю при проверке. Поэтому я придерживался стандартного расположения Rails-файлов, не прятал бизнес-логику в нестандартные папки и оставил ключевые решения в контроллерах, моделях и JavaScript-файле, которые легко открыть.</p>
+<h3>2.3 Пользовательские сценарии</h3>
+<p>Основной сценарий я построил так:</p>
+<ol>
+<li>пользователь открывает <code>/ru/login</code> или <code>/en/login</code>;</li>
+<li>вводит e-mail и пароль;</li>
+<li>попадает в рабочую область оценки;</li>
+<li>выбирает категорию торговых центров;</li>
+<li>получает карточку ТЦ с названием, адресом, описанием, изображением и средней оценкой;</li>
+<li>выбирает значение на шкале <code>1..100</code>;</li>
+<li>при необходимости пишет комментарий;</li>
+<li>отправляет оценку;</li>
+<li>система сохраняет запись и показывает следующий неоцененный ТЦ;</li>
+<li>пользователь открывает личный кабинет и выгружает CSV.</li>
+</ol>
+<p>В этой последовательности я отделил HTML-страницы от API. Страница рабочей области рендерится один раз, а карточки и оценки обрабатываются через JSON. Такой подход делает интерфейс быстрее и демонстрирует современную модель взаимодействия браузера и Rails-сервера.</p>
+<h2>3. Выбор технологий и инструментов</h2>
+<h3>3.1 Обоснование Ruby on Rails 8</h3>
+<p>Ruby on Rails я выбрал как основной фреймворк, потому что он хорошо подходит для учебного проекта полного цикла. Rails сразу задает архитектуру MVC, предоставляет маршрутизацию, миграции, ORM Active Record, шаблонизатор ERB, работу с сессиями, защиту CSRF, тестовый фреймворк и средства локализации. Это позволило мне сосредоточиться на предметной области, а не писать инфраструктурный код с нуля.</p>
+<p>Версия Rails 8 важна тем, что она отражает современное состояние фреймворка. В проекте я использовал стандартный набор Rails-компонентов: контроллеры, модели, представления, миграции, <code>routes.rb</code>, <code>config/locales</code>, импорт JavaScript через importmap и ассеты через Propshaft. Для базы данных я выбрал PostgreSQL, потому что он широко применяется в production-проектах и поддерживает надежные ограничения на уровне схемы.</p>
+<p>Я сознательно не использовал Devise, хотя он часто встречается в Rails-проектах. По промту требовалась кастомная авторизация, поэтому я реализовал ее вручную. Это полезно для курсового проекта: в отчете можно показать, как именно создается пользователь, как проверяется пароль, как в сессии хранится идентификатор и как защищаются страницы.</p>
+<h3>3.2 Используемый стек</h3>
+<table>
+<thead>
+<tr>
+<th>Компонент</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ruby 3.3.11</td>
+<td>язык разработки серверной части</td>
+</tr>
+<tr>
+<td>Ruby on Rails 8.0</td>
+<td>MVC-фреймворк приложения</td>
+</tr>
+<tr>
+<td>PostgreSQL 16</td>
+<td>основная СУБД</td>
+</tr>
+<tr>
+<td>Active Record</td>
+<td>ORM, миграции, валидации и связи моделей</td>
+</tr>
+<tr>
+<td>bcrypt</td>
+<td>безопасное хеширование паролей</td>
+</tr>
+<tr>
+<td>ERB</td>
+<td>серверные HTML-шаблоны</td>
+</tr>
+<tr>
+<td>Vanilla JavaScript</td>
+<td>динамика рабочей области</td>
+</tr>
+<tr>
+<td>Fetch API</td>
+<td>обмен JSON между клиентом и сервером</td>
+</tr>
+<tr>
+<td>I18n</td>
+<td>русская и английская локализация</td>
+</tr>
+<tr>
+<td>Minitest</td>
+<td>unit и integration-тесты</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>воспроизводимый запуск приложения</td>
+</tr>
+</tbody></table>
+<p>Этот стек я считаю достаточным для курсового проекта: он не перегружен лишними зависимостями, но покрывает все требования. Важным техническим решением стало использование Rails API-эндпоинтов внутри обычного MVC-приложения. Так я сохранил простую серверную структуру и одновременно сделал современный асинхронный UX.</p>
+<div class="page-break"></div>
+
+<h2>4. Проектирование</h2>
+<h3>4.1 Архитектура MVC</h3>
+<p>Я спроектировал приложение по стандартному паттерну MVC:</p>
+<ul>
+<li><strong>Model</strong> отвечает за данные, связи, валидации и вычисления. В проекте это <code>User</code>, <code>Theme</code>, <code>MallItem</code>, <code>Evaluation</code>;</li>
+<li><strong>View</strong> отвечает за HTML-страницы: общий layout, формы входа и регистрации, рабочую область оценки, личный кабинет;</li>
+<li><strong>Controller</strong> принимает запросы, готовит данные и возвращает HTML или JSON. В проекте есть обычные контроллеры страниц и отдельный API-контроллер.</li>
+</ul>
+<p>Разделение получилось следующим:</p>
+<table>
+<thead>
+<tr>
+<th>Слой</th>
+<th>Файлы</th>
+<th>Ответственность</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Модели</td>
+<td><code>app/models/*.rb</code></td>
+<td>структура данных, связи, валидации, CSV</td>
+</tr>
+<tr>
+<td>Контроллеры страниц</td>
+<td><code>malls_controller.rb</code>, <code>users_controller.rb</code>, <code>sessions_controller.rb</code>, <code>profiles_controller.rb</code></td>
+<td>HTML-страницы и пользовательские сессии</td>
+</tr>
+<tr>
+<td>API</td>
+<td><code>app/controllers/api/v1/malls_api_controller.rb</code></td>
+<td>JSON-выдача ТЦ и сохранение оценки</td>
+</tr>
+<tr>
+<td>Представления</td>
+<td><code>app/views/...</code></td>
+<td>формы, рабочая область, личный кабинет</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td><code>app/javascript/malls_evaluation.js</code></td>
+<td>динамическая загрузка карточки и отправка оценки</td>
+</tr>
+<tr>
+<td>Локализация</td>
+<td><code>config/locales/ru.yml</code>, <code>config/locales/en.yml</code></td>
+<td>текст интерфейса на двух языках</td>
+</tr>
+</tbody></table>
+<p>В результате архитектура осталась простой. Мне не пришлось вводить сервисные объекты или отдельную frontend-сборку: для размера курсового проекта достаточно стандартных Rails-слоев.</p>
+<h3>4.2 Маршрутизация</h3>
+<p>Маршруты я разделил на две группы. HTML-страницы обернуты в <code>scope &quot;(:locale)&quot;, locale: /ru|en/</code>, чтобы пользователь мог открыть <code>/ru</code>, <code>/en</code>, <code>/ru/profile</code>, <code>/en/profile</code> и другие локализованные адреса. API вынесен в пространство имен <code>/api/v1</code>, потому что JSON-эндпоинты не являются обычными страницами.</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Метод</th>
+<th>Контроллер</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/ru</code> или <code>/en</code></td>
+<td>GET</td>
+<td><code>MallsController#index</code></td>
+<td>рабочая область оценки</td>
+</tr>
+<tr>
+<td><code>/ru/malls</code></td>
+<td>GET</td>
+<td><code>MallsController#index</code></td>
+<td>явный путь к рабочей области</td>
+</tr>
+<tr>
+<td><code>/ru/signup</code></td>
+<td>GET/POST</td>
+<td><code>UsersController</code></td>
+<td>регистрация пользователя</td>
+</tr>
+<tr>
+<td><code>/ru/login</code></td>
+<td>GET/POST</td>
+<td><code>SessionsController</code></td>
+<td>форма входа и создание сессии</td>
+</tr>
+<tr>
+<td><code>/ru/logout</code></td>
+<td>DELETE</td>
+<td><code>SessionsController#destroy</code></td>
+<td>выход из системы</td>
+</tr>
+<tr>
+<td><code>/ru/profile</code></td>
+<td>GET</td>
+<td><code>ProfilesController#show</code></td>
+<td>личный кабинет</td>
+</tr>
+<tr>
+<td><code>/ru/profile/export</code></td>
+<td>GET</td>
+<td><code>ProfilesController#export</code></td>
+<td>скачивание CSV</td>
+</tr>
+<tr>
+<td><code>/api/v1/malls?theme_id=1</code></td>
+<td>GET</td>
+<td><code>Api::V1::MallsApiController#index</code></td>
+<td>получить первый неоцененный ТЦ</td>
+</tr>
+<tr>
+<td><code>/api/v1/malls</code></td>
+<td>POST</td>
+<td><code>Api::V1::MallsApiController#create</code></td>
+<td>сохранить оценку и комментарий</td>
+</tr>
+</tbody></table>
+<p>Листинг маршрутов приведен ниже. Я включил его полностью, потому что по нему удобно проверить соответствие проекта требованиям.</p>
+<pre><code class="language-ruby">Rails.application.routes.draw do
+  get &quot;up&quot; =&gt; &quot;rails/health#show&quot;, as: :rails_health_check
+  get &quot;service-worker&quot; =&gt; &quot;rails/pwa#service_worker&quot;, as: :pwa_service_worker
+  get &quot;manifest&quot; =&gt; &quot;rails/pwa#manifest&quot;, as: :pwa_manifest
+
+  namespace :api do
+    namespace :v1 do
+      get &quot;malls&quot;, to: &quot;malls_api#index&quot;
+      post &quot;malls&quot;, to: &quot;malls_api#create&quot;
+    end
+  end
+
+  scope &quot;(:locale)&quot;, locale: /ru|en/ do
+    root &quot;malls#index&quot;
+    get &quot;malls&quot;, to: &quot;malls#index&quot;, as: :malls
+    get &quot;signup&quot;, to: &quot;users#new&quot;, as: :signup
+    post &quot;signup&quot;, to: &quot;users#create&quot;
+    get &quot;login&quot;, to: &quot;sessions#new&quot;, as: :login
+    post &quot;login&quot;, to: &quot;sessions#create&quot;
+    delete &quot;logout&quot;, to: &quot;sessions#destroy&quot;, as: :logout
+    resource :profile, only: [:show] do
+      get &quot;export&quot;
+    end
+  end
+end
+</code></pre>
+<h3>4.3 Модель данных</h3>
+<p>Я разработал четыре основные сущности.</p>
+<table>
+<thead>
+<tr>
+<th>Таблица</th>
+<th>Назначение</th>
+<th>Ключевые поля</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>users</code></td>
+<td>пользователи системы</td>
+<td><code>email</code>, <code>password_digest</code></td>
+</tr>
+<tr>
+<td><code>themes</code></td>
+<td>категории торговых центров</td>
+<td><code>name_ru</code>, <code>name_en</code></td>
+</tr>
+<tr>
+<td><code>mall_items</code></td>
+<td>карточки ТЦ/ТРЦ</td>
+<td><code>name_ru</code>, <code>name_en</code>, <code>description_ru</code>, <code>description_en</code>, <code>address_ru</code>, <code>address_en</code>, <code>image_url</code>, <code>theme_id</code></td>
+</tr>
+<tr>
+<td><code>evaluations</code></td>
+<td>экспертные оценки пользователей</td>
+<td><code>user_id</code>, <code>mall_item_id</code>, <code>rating</code>, <code>comment</code></td>
+</tr>
+</tbody></table>
+<p>Связи моделей:</p>
+<ul>
+<li><code>User has_many :evaluations</code>;</li>
+<li><code>Theme has_many :mall_items</code>;</li>
+<li><code>MallItem belongs_to :theme</code>;</li>
+<li><code>MallItem has_many :evaluations</code>;</li>
+<li><code>Evaluation belongs_to :user</code>;</li>
+<li><code>Evaluation belongs_to :mall_item</code>.</li>
+</ul>
+<p>Для таблицы <code>evaluations</code> я сделал уникальный индекс на пару <code>user_id + mall_item_id</code>. Это не позволяет одному пользователю создать дубликаты оценок для одного торгового центра. Также в миграции я добавил check constraint на диапазон <code>rating BETWEEN 1 AND 100</code>. Даже если кто-то обойдет интерфейс и отправит неверное значение напрямую в API, база не примет некорректную оценку.</p>
+<figure>
+  <img src="../screens/mall_schema_erd.png" alt="ERD MallExpert">
+  <figcaption>Рисунок 1 - разработанная мной логическая схема базы данных MallExpert SPb.</figcaption>
+</figure>
+
+<h3>4.4 Схема пользовательского сценария</h3>
+<p>Я спроектировал пользовательский сценарий как цикл экспертной оценки. Пользователь выбирает тему, получает карточку, оценивает ее, а затем система автоматически выдает следующий неоцененный объект. Такой сценарий хорошо подходит для набора экспертных данных: пользователь не тратит время на ручной выбор каждой карточки.</p>
+<figure>
+  <img src="../screens/mall_flow.png" alt="Flow MallExpert">
+  <figcaption>Рисунок 2 - пользовательский поток: вход, выбор категории, API, оценка, личный кабинет и CSV.</figcaption>
+</figure>
+
+<div class="page-break"></div>
+
+<h2>5. Реализация проекта</h2>
+<h3>5.1 Сессионная авторизация</h3>
+<p>Аутентификацию я реализовал без Devise. В модели <code>User</code> я использовал <code>has_secure_password</code>, который добавляет методы установки пароля, подтверждения пароля и проверки пароля через <code>authenticate</code>. Для работы этого механизма в Gemfile подключен <code>bcrypt</code>, а в таблице <code>users</code> создано поле <code>password_digest</code>.</p>
+<p>В <code>SessionsController#create</code> я ищу пользователя по e-mail и вызываю <code>user.authenticate(params[:password])</code>. Если пароль верный, я сохраняю <code>user.id</code> в <code>session[:user_id]</code>. После этого helper <code>current_user</code> в <code>ApplicationController</code> может восстановить пользователя для каждого следующего запроса. Метод <code>authorize</code> защищает рабочую область, личный кабинет и API: HTML-запросы перенаправляются на страницу входа, а JSON-запросы получают ответ <code>401 Unauthorized</code>.</p>
+<p>Такой вариант авторизации проще Devise, но для учебного проекта он даже полезнее: я явно показываю, как устроен вход, выход и проверка прав. При этом пароль не хранится в открытом виде, потому что <code>bcrypt</code> сохраняет только безопасный хеш.</p>
+<h3>5.2 Модели и ограничения данных</h3>
+<p>Самая важная бизнес-модель проекта - <code>Evaluation</code>. В ней я закрепил диапазон оценки, связь с пользователем и торговым центром, ограничение длины комментария и уникальность пары <code>user_id + mall_item_id</code>. Также в этой модели я реализовал экспорт в CSV.</p>
+<pre><code class="language-ruby">require &quot;csv&quot;
+
+class Evaluation &lt; ApplicationRecord
+  belongs_to :user
+  belongs_to :mall_item
+
+  validates :rating, presence: true, numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 1,
+    less_than_or_equal_to: 100
+  }
+  validates :comment, length: { maximum: 1_000 }, allow_blank: true
+  validates :user_id, uniqueness: { scope: :mall_item_id }
+
+  def self.to_csv(evaluations)
+    CSV.generate(headers: true) do |csv|
+      csv &lt;&lt; [&quot;mall_name_ru&quot;, &quot;mall_name_en&quot;, &quot;theme_ru&quot;, &quot;theme_en&quot;, &quot;rating&quot;, &quot;comment&quot;, &quot;created_at&quot;]
+
+      evaluations.each do |evaluation|
+        mall = evaluation.mall_item
+        theme = mall.theme
+        csv &lt;&lt; [
+          mall.name_ru,
+          mall.name_en,
+          theme.name_ru,
+          theme.name_en,
+          evaluation.rating,
+          evaluation.comment,
+          evaluation.created_at
+        ]
+      end
+    end
+  end
+end
+</code></pre>
+<p>Модель <code>MallItem</code> содержит методы локализованного вывода: <code>localized_name</code>, <code>localized_description</code>, <code>localized_address</code>. Благодаря этому контроллер и представление не решают каждый раз, какое поле выбрать. Еще в модели есть метод <code>average_rating</code>, который считает среднюю экспертную оценку и округляет ее до двух знаков. Это значение я показываю в карточке ТЦ.</p>
+<p>Для надежности я продублировал критичные правила в миграции. Валидации удобны для пользовательских ошибок, но ограничения базы данных защищают от прямых вставок и случайных багов. Поэтому <code>evaluations</code> имеет внешний ключ на пользователя, внешний ключ на ТЦ, уникальный индекс и check constraint.</p>
+<h3>5.3 Интернационализация RU/EN</h3>
+<p>Локализацию я сделал через стандартный Rails I18n. В <code>ApplicationController#set_locale</code> я беру язык из <code>params[:locale]</code>, проверяю, что он входит в список доступных локалей, и сохраняю его в сессии. В layout есть ссылки <code>RU</code> и <code>EN</code>, которые меняют текущий путь с другим параметром локали.</p>
+<p>Отдельно я локализовал не только статический интерфейс, но и данные предметной области. В <code>themes</code> хранятся <code>name_ru</code> и <code>name_en</code>, а в <code>mall_items</code> - русские и английские названия, адреса и описания. Поэтому английская версия страницы показывает не просто переведенные кнопки, а полноценную карточку ТЦ на английском языке.</p>
+<h3>5.4 API и асинхронный интерфейс</h3>
+<p>API-контроллер я вынес в <code>app/controllers/api/v1/malls_api_controller.rb</code>. Метод <code>index</code> принимает <code>theme_id</code>, находит все ТЦ выбранной темы, сравнивает их с оценками текущего пользователя и возвращает первый неоцененный объект. Если все объекты уже оценены, API возвращает <code>done: true</code> и сообщение для интерфейса.</p>
+<p>Метод <code>create</code> принимает <code>mall_item_id</code>, <code>rating</code> и <code>comment</code>. Я использую <code>find_or_initialize_by</code>, поэтому повторная отправка оценки для той же пары пользователя и ТЦ не создает дубль, а обновляет существующую запись. Это решение согласуется с уникальным индексом и делает API устойчивее.</p>
+<pre><code class="language-ruby">module Api
+  module V1
+    class MallsApiController &lt; ApplicationController
+      before_action :authorize
+
+      def index
+        theme = Theme.find_by(id: params[:theme_id])
+        return render json: { done: true, message: t(&quot;mall_expert.api.choose_theme&quot;) } unless theme
+
+        scope = theme.mall_items.order(:id)
+        evaluated_ids = current_user.evaluations.where(mall_item_id: scope.select(:id)).select(:mall_item_id)
+        mall_item = scope.where.not(id: evaluated_ids).first
+
+        if mall_item
+          render json: mall_payload(mall_item)
+        else
+          render json: { done: true, message: t(&quot;mall_expert.api.theme_completed&quot;) }
+        end
+      end
+
+      def create
+        mall_item = MallItem.find(params[:mall_item_id])
+        evaluation = current_user.evaluations.find_or_initialize_by(mall_item: mall_item)
+        evaluation.rating = params[:rating]
+        evaluation.comment = params[:comment]
+
+        if evaluation.save
+          render json: {
+            status: &quot;ok&quot;,
+            message: t(&quot;mall_expert.api.saved&quot;),
+            average_rating: mall_item.average_rating,
+            evaluations_count: mall_item.evaluations.count
+          }
+        else
+          render json: { status: &quot;error&quot;, errors: evaluation.errors.full_messages }, status: :unprocessable_entity
+        end
+      rescue ActiveRecord::RecordNotFound
+        render json: { status: &quot;error&quot;, error: t(&quot;mall_expert.api.not_found&quot;) }, status: :not_found
+      end
+
+      private
+
+      def mall_payload(mall_item)
+        {
+          done: false,
+          mall_item: {
+            id: mall_item.id,
+            name: mall_item.localized_name,
+            description: mall_item.localized_description,
+            address: mall_item.localized_address,
+            image_url: mall_item.image_url,
+            theme: mall_item.theme.localized_name,
+            average_rating: mall_item.average_rating,
+            evaluations_count: mall_item.evaluations.count
+          }
+        }
+      end
+    end
+  end
+end
+</code></pre>
+<p>На клиентской стороне я написал отдельный JavaScript-файл <code>malls_evaluation.js</code>. Он слушает событие <code>turbo:load</code>, находит элементы рабочей области, обрабатывает смену категории, обновляет значение ползунка и отправляет форму через <code>fetch()</code>. CSRF-токен берется из meta-тега layout, поэтому POST-запросы проходят стандартную Rails-защиту.</p>
+<pre><code class="language-javascript">document.addEventListener(&quot;turbo:load&quot;, () =&gt; {
+  const workspace = document.querySelector(&quot;[data-mall-workspace]&quot;)
+  if (!workspace) return
+
+  const themeSelect = document.querySelector(&quot;#theme-select&quot;)
+  const emptyState = document.querySelector(&quot;#empty-state&quot;)
+  const cardBody = document.querySelector(&quot;#mall-card-body&quot;)
+  const form = document.querySelector(&quot;#evaluation-form&quot;)
+  const ratingRange = document.querySelector(&quot;#rating-range&quot;)
+  const ratingOutput = document.querySelector(&quot;#rating-output&quot;)
+  const comment = document.querySelector(&quot;#comment&quot;)
+  const mallItemId = document.querySelector(&quot;#mall-item-id&quot;)
+  const locale = document.body.dataset.locale || &quot;ru&quot;
+
+  function csrfToken() {
+    return document.querySelector(&quot;meta[name=&#39;csrf-token&#39;]&quot;)?.getAttribute(&quot;content&quot;)
+  }
+
+  function showEmpty(message) {
+    emptyState.classList.remove(&quot;is-hidden&quot;)
+    cardBody.classList.add(&quot;is-hidden&quot;)
+    form.classList.add(&quot;is-hidden&quot;)
+    emptyState.querySelector(&quot;p&quot;).textContent = message
+  }
+
+  function showMall(payload) {
+    const mall = payload.mall_item
+    mallItemId.value = mall.id
+    document.querySelector(&quot;#mall-image&quot;).src = mall.image_url
+    document.querySelector(&quot;#mall-image&quot;).alt = mall.name
+    document.querySelector(&quot;#mall-theme&quot;).textContent = mall.theme
+    document.querySelector(&quot;#mall-name&quot;).textContent = mall.name
+    document.querySelector(&quot;#mall-address&quot;).textContent = mall.address
+    document.querySelector(&quot;#mall-description&quot;).textContent = mall.description
+    document.querySelector(&quot;#average-rating&quot;).textContent = mall.average_rating || &quot;—&quot;
+    ratingRange.value = 50
+    ratingOutput.textContent = &quot;50&quot;
+    comment.value = &quot;&quot;
+    emptyState.classList.add(&quot;is-hidden&quot;)
+    cardBody.classList.remove(&quot;is-hidden&quot;)
+    form.classList.remove(&quot;is-hidden&quot;)
+  }
+
+  async function loadNextMall() {
+    const params = new URLSearchParams({ locale })
+    if (themeSelect.value) params.set(&quot;theme_id&quot;, themeSelect.value)
+
+    const response = await fetch(`/api/v1/malls?${params.toString()}`, {
+      headers: {
+        &quot;Accept&quot;: &quot;application/json&quot;,
+        &quot;X-CSRF-Token&quot;: csrfToken()
+      }
+    })
+    const payload = await response.json()
+
+    if (!response.ok) {
+      showEmpty(payload.error || &quot;Unable to load data&quot;)
+      return
+    }
+
+    if (payload.done) {
+      showEmpty(payload.message)
+    } else {
+      showMall(payload)
+    }
+  }
+
+  ratingRange.addEventListener(&quot;input&quot;, () =&gt; {
+    ratingOutput.textContent = ratingRange.value
+  })
+
+  themeSelect.addEventListener(&quot;change&quot;, loadNextMall)
+
+  form.addEventListener(&quot;submit&quot;, async (event) =&gt; {
+    event.preventDefault()
+
+    const response = await fetch(`/api/v1/malls?locale=${locale}`, {
+      method: &quot;POST&quot;,
+      headers: {
+        &quot;Content-Type&quot;: &quot;application/json&quot;,
+        &quot;Accept&quot;: &quot;application/json&quot;,
+        &quot;X-CSRF-Token&quot;: csrfToken()
+      },
+      body: JSON.stringify({
+        mall_item_id: mallItemId.value,
+        rating: ratingRange.value,
+        comment: comment.value
+      })
+    })
+    const payload = await response.json()
+
+    if (!response.ok) {
+      window.alert(payload.errors?.join(&quot;, &quot;) || payload.error || &quot;Unable to save evaluation&quot;)
+      return
+    }
+
+    await loadNextMall()
+  })
+})
+</code></pre>
+<h3>5.5 Личный кабинет и CSV-экспорт</h3>
+<p>Личный кабинет я реализовал в <code>ProfilesController#show</code>. На странице пользователь видит общее количество оценок, среднюю оценку, количество оцененных тем и таблицу всех оценок. Данные загружаются через <code>includes(mall_item: :theme)</code>, чтобы избежать лишних запросов к базе при выводе связанных объектов.</p>
+<p>Экспорт я сделал через стандартную библиотеку Ruby <code>CSV</code>. Метод <code>Evaluation.to_csv</code> формирует файл с заголовками и строками оценок. В контроллере я вызываю <code>send_data</code>, задаю имя <code>my_evaluations.csv</code> и MIME-тип <code>text/csv</code>. Такой экспорт удобен для дальнейшего анализа в Excel, Google Sheets или другой системе.</p>
+<h3>5.6 Начальные данные</h3>
+<p>В <code>db/seeds.rb</code> я добавил три категории и десять реальных торговых центров Санкт-Петербурга. Категории отражают разные сценарии посещения: центр города, семейный досуг и крупные комплексы. Для каждого ТЦ я указал русское и английское название, адрес, описание и URL изображения.</p>
+<p>Я также создал демо-пользователя <code>student@example.com</code> с паролем <code>password123</code>, чтобы преподаватель мог быстро войти в систему и проверить основной сценарий без ручной регистрации. При этом регистрация в интерфейсе тоже работает.</p>
+<h2>6. Описание пользовательского интерфейса</h2>
+<h3>6.1 Вход и регистрация</h3>
+<p>Страница входа выполнена в спокойной рабочей стилистике. Пользователь видит поля e-mail и пароль, а после успешного входа попадает в рабочую область. Я не перегружал экран декоративными блоками, потому что для учебного экспертного инструмента важнее ясность формы и быстрый доступ к сценарию оценки.</p>
+<figure>
+  <img src="../screens/mall_login.png" alt="Вход в MallExpert">
+  <figcaption>Рисунок 3 - страница входа в MallExpert SPb.</figcaption>
+</figure>
+
+<h3>6.2 Рабочая область эксперта</h3>
+<p>Главный экран приложения состоит из двух частей: панели выбора категории и карточки торгового центра. Центральным элементом я сделал шкалу <code>1-100</code>, где пользователь двигает ползунок и сразу видит выбранное число. Под шкалой находится поле комментария и кнопка сохранения.</p>
+<figure>
+  <img src="../screens/mall_work_ru.png" alt="Рабочая область RU">
+  <figcaption>Рисунок 4 - рабочая область на русском языке с карточкой ТРЦ «Галерея».</figcaption>
+</figure>
+
+<p>После сохранения оценки интерфейс без перезагрузки запрашивает следующий ТЦ. Это видно по тому, что карточка меняется, а пользователь остается в том же рабочем контексте. Такой UX соответствует требованию Fetch API и делает процесс оценки быстрым.</p>
+<figure>
+  <img src="../screens/mall_after_rating.png" alt="После оценки">
+  <figcaption>Рисунок 5 - состояние рабочей области после сохранения оценки и перехода к следующему объекту.</figcaption>
+</figure>
+
+<h3>6.3 Личный кабинет</h3>
+<p>В личном кабинете я вывел агрегаты и таблицу. Пользователь видит, сколько объектов он оценил, какова средняя оценка и в каких темах уже есть результаты. Ниже расположена таблица с ТЦ, темой, оценкой и комментарием. Кнопка «Скачать CSV» позволяет выгрузить эти данные.</p>
+<figure>
+  <img src="../screens/mall_profile.png" alt="Личный кабинет">
+  <figcaption>Рисунок 6 - личный кабинет пользователя с оценками и экспортом CSV.</figcaption>
+</figure>
+
+<h3>6.4 Английская локализация</h3>
+<p>Английская локализация проверяет сразу две части проекта: маршрутизацию с <code>/:locale</code> и данные с полями <code>*_en</code>. В английской версии меняются навигация, заголовки, подписи формы, категории и описания торговых центров.</p>
+<figure>
+  <img src="../screens/mall_work_en.png" alt="English interface">
+  <figcaption>Рисунок 7 - английская версия рабочей области MallExpert SPb.</figcaption>
+</figure>
+
+<div class="page-break"></div>
+
+<h2>7. Тестирование и отладка</h2>
+<h3>7.1 Unit-тесты</h3>
+<p>Я написал unit-тесты для ключевых моделей. Для <code>Evaluation</code> проверяется диапазон оценки: значения меньше 1 и больше 100 должны быть невалидными. Также проверяется уникальность пары пользователь-ТЦ и генерация CSV. Для <code>MallItem</code> проверяется расчет средней оценки, потому что это значение используется в карточке ТЦ.</p>
+<p>Такой набор тестов покрывает критичную бизнес-логику. Если в будущем изменить модель оценки, тесты сразу покажут, что нарушился диапазон, уникальность или расчет среднего значения.</p>
+<h3>7.2 Интеграционные тесты</h3>
+<p>Интеграционный тест проверяет пользовательский путь: вход, открытие рабочей области, запрос к API и сохранение оценки. Я считаю этот тест важным, потому что именно он связывает сессии, контроллеры, маршруты, модели и JSON-ответы. Unit-тесты проверяют детали, а integration-тест подтверждает, что приложение работает как система.</p>
+<h3>7.3 Smoke-test</h3>
+<p>После сборки я выполнил smoke-test в браузере:</p>
+<pre><code class="language-text">1. Открыл http://localhost:3000/ru/login.
+2. Вошел под student@example.com / password123.
+3. Выбрал категорию «Центр города».
+4. Получил карточку ТРЦ «Галерея».
+5. Поставил оценку 88 и добавил комментарий.
+6. Убедился, что система показала следующую карточку.
+7. Открыл личный кабинет и проверил наличие оценки.
+8. Переключил интерфейс на английский язык.
+9. Проверил, что локализованные тексты и данные отображаются корректно.
+</code></pre>
+<h2>8. Запуск и развертывание</h2>
+<h3>8.1 Локальный запуск</h3>
+<p>Для локального запуска проекта я подготовил стандартную последовательность команд:</p>
+<pre><code class="language-bash">cd /Users/doodels/.openclaw/workspace/projects/fooddecision-course
+cp .env.example .env
+bundle install
+bin/rails db:create db:migrate db:seed
+bin/rails server
+</code></pre>
+<p>После запуска приложение доступно по адресам:</p>
+<ul>
+<li><code>http://localhost:3000/ru</code>;</li>
+<li><code>http://localhost:3000/en</code>.</li>
+</ul>
+<p>Демо-пользователь:</p>
+<pre><code class="language-text">email: student@example.com
+password: password123
+</code></pre>
+<h3>8.2 Docker-запуск</h3>
+<p>Для воспроизводимого запуска я подготовил Dockerfile. Контейнер можно собрать и запустить командой:</p>
+<pre><code class="language-bash">docker build -t mall-expert-course .
+docker run --rm -p 3000:3000 \
+  -e RAILS_ENV=development \
+  -e POSTGRES_HOST=host.docker.internal \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=mall_expert_course_development \
+  mall-expert-course \
+  ./bin/rails server -b 0.0.0.0 -p 3000
+</code></pre>
+<p>Такой способ удобен для переноса проекта на другое устройство: достаточно иметь Docker и доступную PostgreSQL-базу.</p>
+<h2>9. Результаты моей работы</h2>
+<p>В результате выполнения курсового проекта я получил работающее WEB-приложение MallExpert SPb. Я реализовал полный пользовательский сценарий экспертной оценки торговых центров: вход, выбор категории, получение карточки, оценка ползунком 1-100, комментарий, сохранение результата, переход к следующему объекту и просмотр персональных оценок в личном кабинете.</p>
+<p>По требованиям промта я выполнил следующие пункты:</p>
+<table>
+<thead>
+<tr>
+<th>Требование</th>
+<th>Статус</th>
+<th>Где проверять</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Rails 8 + PostgreSQL</td>
+<td>выполнено</td>
+<td><code>Gemfile</code>, <code>config/database.yml</code></td>
+</tr>
+<tr>
+<td>Кастомная авторизация</td>
+<td>выполнено</td>
+<td><code>User</code>, <code>SessionsController</code>, <code>ApplicationController</code></td>
+</tr>
+<tr>
+<td><code>has_secure_password</code> и <code>bcrypt</code></td>
+<td>выполнено</td>
+<td><code>app/models/user.rb</code>, <code>Gemfile</code></td>
+</tr>
+<tr>
+<td>Модели <code>User</code>, <code>Theme</code>, <code>MallItem</code>, <code>Evaluation</code></td>
+<td>выполнено</td>
+<td><code>app/models</code></td>
+</tr>
+<tr>
+<td>Оценка 1-100</td>
+<td>выполнено</td>
+<td><code>Evaluation</code>, миграция, JS-ползунок</td>
+</tr>
+<tr>
+<td>Уникальный индекс оценки</td>
+<td>выполнено</td>
+<td><code>db/schema.rb</code>, миграция <code>create_evaluations</code></td>
+</tr>
+<tr>
+<td>Fetch API</td>
+<td>выполнено</td>
+<td><code>app/javascript/malls_evaluation.js</code></td>
+</tr>
+<tr>
+<td>API <code>/api/v1/malls</code></td>
+<td>выполнено</td>
+<td><code>MallsApiController</code></td>
+</tr>
+<tr>
+<td>Личный кабинет</td>
+<td>выполнено</td>
+<td><code>ProfilesController#show</code></td>
+</tr>
+<tr>
+<td>CSV-экспорт</td>
+<td>выполнено</td>
+<td><code>ProfilesController#export</code>, <code>Evaluation.to_csv</code></td>
+</tr>
+<tr>
+<td>RU/EN локализация</td>
+<td>выполнено</td>
+<td><code>config/locales</code></td>
+</tr>
+<tr>
+<td>10 ТЦ по 3 категориям</td>
+<td>выполнено</td>
+<td><code>db/seeds.rb</code></td>
+</tr>
+<tr>
+<td>Тесты</td>
+<td>выполнено</td>
+<td><code>test/models</code>, <code>test/integration</code></td>
+</tr>
+<tr>
+<td>Отчет и скриншоты</td>
+<td>выполнено</td>
+<td><code>report</code>, <code>screens</code></td>
+</tr>
+</tbody></table>
+<p>Проект можно использовать как основу для дальнейшего развития. Например, можно добавить роли администратора, редактирование списка торговых центров через интерфейс, расширенную аналитику по оценкам или фильтрацию по району города. Но базовая версия уже решает поставленную учебную задачу и демонстрирует основные навыки разработки Rails-приложений.</p>
+<h2>10. Заключение</h2>
+<p>В ходе выполнения курсового проекта я спроектировал и разработал полноценное WEB-приложение на Ruby on Rails 8. Я прошел весь путь от постановки задачи и структуры базы данных до реализации интерфейса, API, тестов, Docker-запуска и пояснительной записки.</p>
+<p>Главным техническим результатом для меня стала реализация связки Rails MVC + Fetch API. Серверная часть отвечает за надежное хранение данных и проверку правил, а клиентская часть делает основной сценарий быстрым и удобным. Отдельно я закрепил понимание ручной сессионной авторизации: в проекте нет Devise, поэтому весь процесс входа и защиты маршрутов реализован явно.</p>
+<p>Я также убедился, что Rails 8 остается удобной экосистемой для учебных и прикладных WEB-проектов. Фреймворк позволяет быстро собрать приложение, но при этом не мешает контролировать важные детали: маршруты, валидации, SQL-ограничения, локализацию и формат API.</p>
+<p>Итоговая версия MallExpert SPb соответствует требованиям промта: предметная область перенесена на торговые центры Санкт-Петербурга, используется шкала 1-100, реализованы кастомные сессии, PostgreSQL, JSON API, личный кабинет, CSV-экспорт, RU/EN локализация, тесты и отчетные материалы.</p>
+<h2>11. Список использованных источников</h2>
+<ol>
+<li>Ruby on Rails Guides. Официальная документация Ruby on Rails. URL: <a href="https://guides.rubyonrails.org/">https://guides.rubyonrails.org/</a></li>
+<li>Ruby on Rails API Documentation. URL: <a href="https://api.rubyonrails.org/">https://api.rubyonrails.org/</a></li>
+<li>PostgreSQL Documentation. URL: <a href="https://www.postgresql.org/docs/">https://www.postgresql.org/docs/</a></li>
+<li>Ruby CSV Documentation. URL: <a href="https://ruby-doc.org/stdlib/libdoc/csv/rdoc/CSV.html">https://ruby-doc.org/stdlib/libdoc/csv/rdoc/CSV.html</a></li>
+<li>MDN Web Docs: Fetch API. URL: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API</a></li>
+<li>MDN Web Docs: HTML input range. URL: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range</a></li>
+<li>Rails Internationalization Guide. URL: <a href="https://guides.rubyonrails.org/i18n.html">https://guides.rubyonrails.org/i18n.html</a></li>
+<li>Docker Documentation. URL: <a href="https://docs.docker.com/">https://docs.docker.com/</a></li>
+</ol>
+<div class="page-break"></div>
+
+<h2>12. Приложения</h2>
+<h3>Приложение А. Структура проекта</h3>
+<p>Ключевые файлы итогового проекта:</p>
+<table>
+<thead>
+<tr>
+<th>Файл</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Gemfile</code></td>
+<td>зависимости Rails 8, PostgreSQL, bcrypt, importmap, propshaft</td>
+</tr>
+<tr>
+<td><code>config/routes.rb</code></td>
+<td>маршруты HTML-страниц и JSON API</td>
+</tr>
+<tr>
+<td><code>app/controllers/application_controller.rb</code></td>
+<td>локализация, текущий пользователь, защита маршрутов</td>
+</tr>
+<tr>
+<td><code>app/controllers/api/v1/malls_api_controller.rb</code></td>
+<td>получение ТЦ и сохранение оценки</td>
+</tr>
+<tr>
+<td><code>app/models/evaluation.rb</code></td>
+<td>валидации оценки, уникальность, CSV</td>
+</tr>
+<tr>
+<td><code>app/javascript/malls_evaluation.js</code></td>
+<td>динамический интерфейс оценки</td>
+</tr>
+<tr>
+<td><code>db/seeds.rb</code></td>
+<td>три категории и десять ТЦ Санкт-Петербурга</td>
+</tr>
+<tr>
+<td><code>test/integration/mall_workflow_test.rb</code></td>
+<td>проверка пользовательского сценария</td>
+</tr>
+</tbody></table>
+<h3>Приложение Б. Листинг <code>Gemfile</code></h3>
+<pre><code class="language-ruby">source &quot;https://rubygems.org&quot;
+
+ruby &quot;3.3.11&quot;
+
+gem &quot;rails&quot;, &quot;~&gt; 8.0.0&quot;
+gem &quot;pg&quot;, &quot;~&gt; 1.1&quot;
+gem &quot;puma&quot;, &quot;&gt;= 5.0&quot;
+gem &quot;bcrypt&quot;, &quot;~&gt; 3.1&quot;
+gem &quot;csv&quot;, &quot;~&gt; 3.3&quot;
+gem &quot;propshaft&quot;
+gem &quot;importmap-rails&quot;
+gem &quot;turbo-rails&quot;
+gem &quot;stimulus-rails&quot;
+gem &quot;bootsnap&quot;, require: false
+gem &quot;tzinfo-data&quot;, platforms: %i[
+  mswin mingw x64_mingw jruby
+]
+
+group :development, :test do
+  gem &quot;debug&quot;, platforms: %i[ mri mswin mingw x64_mingw ], require: &quot;debug/prelude&quot;
+  gem &quot;brakeman&quot;, require: false
+  gem &quot;rubocop-rails-omakase&quot;, require: false
+end
+
+group :development do
+  gem &quot;web-console&quot;
+end
+</code></pre>
+<h3>Приложение В. Листинг модели <code>MallItem</code></h3>
+<pre><code class="language-ruby">class MallItem &lt; ApplicationRecord
+  belongs_to :theme
+  has_many :evaluations, dependent: :destroy
+
+  validates :name_ru, :name_en, :description_ru, :description_en,
+    :address_ru, :address_en, :image_url, presence: true
+
+  def localized_name
+    I18n.locale == :en ? name_en : name_ru
+  end
+
+  def localized_description
+    I18n.locale == :en ? description_en : description_ru
+  end
+
+  def localized_address
+    I18n.locale == :en ? address_en : address_ru
+  end
+
+  def average_rating
+    evaluations.average(:rating)&amp;.to_f&amp;.round(2)
+  end
+end
+</code></pre>
+<h3>Приложение Г. Листинг <code>ApplicationController</code></h3>
+<pre><code class="language-ruby">class ApplicationController &lt; ActionController::Base
+  protect_from_forgery with: :exception
+  before_action :set_locale
+
+  helper_method :current_user, :logged_in?, :language_path
+
+  def set_locale
+    locale = params[:locale].presence || session[:locale] || I18n.default_locale
+    locale = I18n.default_locale unless I18n.available_locales.map(&amp;:to_s).include?(locale.to_s)
+    I18n.locale = locale.to_sym
+    session[:locale] = I18n.locale.to_s
+  end
+
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id].present?
+  end
+
+  def logged_in?
+    current_user.present?
+  end
+
+  def authorize
+    return if logged_in?
+
+    respond_to do |format|
+      format.html { redirect_to login_path(locale: I18n.locale), alert: t(&quot;mall_expert.auth.required&quot;) }
+      format.json { render json: { error: t(&quot;mall_expert.auth.required&quot;) }, status: :unauthorized }
+    end
+  end
+
+  def language_path(path = &quot;&quot;)
+    normalized_path = path.start_with?(&quot;/&quot;) ? path : &quot;/#{path}&quot;
+    &quot;/#{I18n.locale}#{normalized_path}&quot;
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
+
+  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
+  allow_browser versions: :modern
+end
+</code></pre>
+<h3>Приложение Д. Листинг <code>ProfilesController</code></h3>
+<pre><code class="language-ruby">class ProfilesController &lt; ApplicationController
+  before_action :authorize
+
+  def show
+    @evaluations = current_user.evaluations.includes(mall_item: :theme).order(created_at: :desc)
+    @average_rating = @evaluations.average(:rating)&amp;.to_f&amp;.round(2)
+    @by_theme = current_user.evaluations.joins(mall_item: :theme).group(&quot;themes.id&quot;, &quot;themes.name_ru&quot;, &quot;themes.name_en&quot;).count
+    @top_evaluation = @evaluations.max_by(&amp;:rating)
+  end
+
+  def export
+    evaluations = current_user.evaluations.includes(mall_item: :theme).order(created_at: :desc)
+
+    send_data Evaluation.to_csv(evaluations),
+      filename: &quot;my_evaluations.csv&quot;,
+      type: &quot;text/csv; charset=utf-8&quot;
+  end
+end
+</code></pre>
+<h3>Приложение Е. Листинг теста пользовательского сценария</h3>
+<pre><code class="language-ruby">require &quot;test_helper&quot;
+
+class MallWorkflowTest &lt; ActionDispatch::IntegrationTest
+  setup do
+    @user = User.create!(email: &quot;student@example.com&quot;, password: &quot;password123&quot;, password_confirmation: &quot;password123&quot;)
+    @theme = Theme.create!(name_ru: &quot;Крупные комплексы&quot;, name_en: &quot;Large complexes&quot;)
+    @mall = MallItem.create!(
+      theme: @theme,
+      name_ru: &quot;ТРК Лето&quot;,
+      name_en: &quot;Leto Mall&quot;,
+      description_ru: &quot;Описание&quot;,
+      description_en: &quot;Description&quot;,
+      address_ru: &quot;Пулковское шоссе, 25&quot;,
+      address_en: &quot;25 Pulkovskoe Highway&quot;,
+      image_url: &quot;https://example.com/leto.jpg&quot;
+    )
+  end
+
+  test &quot;work area requires login&quot; do
+    get &quot;/ru/malls&quot;
+
+    assert_response :redirect
+    assert_includes response.location, &quot;/ru/login&quot;
+  end
+
+  test &quot;user can sign in and open work area&quot; do
+    post &quot;/ru/login&quot;, params: { email: @user.email, password: &quot;password123&quot; }
+    follow_redirect!
+
+    assert_response :success
+    assert_includes response.body, &quot;Оцените ТЦ Санкт-Петербурга&quot;
+  end
+
+  test &quot;api returns first unevaluated mall and saves score&quot; do
+    post &quot;/ru/login&quot;, params: { email: @user.email, password: &quot;password123&quot; }
+
+    get &quot;/api/v1/malls&quot;, params: { locale: &quot;ru&quot;, theme_id: @theme.id }
+    assert_response :success
+    assert_equal @mall.id, response.parsed_body.dig(&quot;mall_item&quot;, &quot;id&quot;)
+
+    post &quot;/api/v1/malls&quot;, params: {
+      locale: &quot;ru&quot;,
+      mall_item_id: @mall.id,
+      rating: 88,
+      comment: &quot;Хороший набор магазинов&quot;
+    }.to_json, headers: { &quot;Content-Type&quot; =&gt; &quot;application/json&quot;, &quot;Accept&quot; =&gt; &quot;application/json&quot; }
+
+    assert_response :success
+    assert_equal 88, @user.evaluations.last.rating
+  end
+
+  test &quot;profile exports csv&quot; do
+    Evaluation.create!(user: @user, mall_item: @mall, rating: 92, comment: &quot;Удобно&quot;)
+    post &quot;/ru/login&quot;, params: { email: @user.email, password: &quot;password123&quot; }
+
+    get &quot;/ru/profile/export&quot;
+
+    assert_response :success
+    assert_includes response.body, &quot;ТРК Лето&quot;
+  end
+end
+</code></pre>
+<h3>Приложение Ж. Команды проверки</h3>
+<pre><code class="language-bash">docker build -t mall-expert-course-local .
+docker run --rm \
+  -e RAILS_ENV=test \
+  -e POSTGRES_HOST=host.docker.internal \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=mall_expert_course_test \
+  mall-expert-course-local ./bin/rails db:create db:migrate test
+</code></pre>
+<h3>Приложение З. Скриншоты</h3>
+<p>В папке <code>screens/</code> находятся изображения, использованные в отчете:</p>
+<ul>
+<li><code>mall_login.png</code> - страница входа;</li>
+<li><code>mall_work_ru.png</code> - рабочая область на русском языке;</li>
+<li><code>mall_after_rating.png</code> - состояние после сохранения оценки;</li>
+<li><code>mall_profile.png</code> - личный кабинет;</li>
+<li><code>mall_work_en.png</code> - английская локализация;</li>
+<li><code>mall_schema_erd.png</code> - схема базы данных;</li>
+<li><code>mall_flow.png</code> - пользовательский сценарий.</li>
+</ul>
+
+
+</body>
+</html>

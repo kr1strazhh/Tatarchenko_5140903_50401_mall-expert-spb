@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <title><%= content_for(:title) || t("mall_expert.title") %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body data-locale="<%= I18n.locale %>" data-user-signed-in="<%= logged_in? %>">
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="<%= root_path(locale: I18n.locale) %>">
+          <span class="brand-mark">ME</span>
+          <span><%= t("mall_expert.title") %></span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <% if logged_in? %>
+            <%= link_to t("mall_expert.nav.work"), malls_path(locale: I18n.locale), class: ["nav-link", ("is-active" if controller_name == "malls")].compact.join(" ") %>
+            <%= link_to t("mall_expert.nav.profile"), profile_path(locale: I18n.locale), class: ["nav-link", ("is-active" if controller_name == "profiles")].compact.join(" ") %>
+            <%= link_to t("mall_expert.nav.logout"), logout_path(locale: I18n.locale), class: "nav-link nav-action", data: { turbo_method: :delete } %>
+          <% else %>
+            <%= link_to t("mall_expert.nav.login"), login_path(locale: I18n.locale), class: ["nav-link", ("is-active" if controller_name == "sessions")].compact.join(" ") %>
+            <%= link_to t("mall_expert.nav.signup"), signup_path(locale: I18n.locale), class: ["nav-link", ("is-active" if controller_name == "users")].compact.join(" ") %>
+          <% end %>
+          <span class="locale-switch" aria-label="Language switcher">
+            <%= link_to "RU", url_for(params.permit!.to_h.merge(locale: "ru")), class: ("is-active" if I18n.locale == :ru) %>
+            <span></span>
+            <%= link_to "EN", url_for(params.permit!.to_h.merge(locale: "en")), class: ("is-active" if I18n.locale == :en) %>
+          </span>
+        </nav>
+      </div>
+    </header>
+    <% if flash.any? %>
+      <div class="flash">
+        <% flash.each do |name, message| %>
+          <div class="flash-item <%= name %>"><%= message %></div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

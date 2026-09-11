@@ -1,0 +1,83 @@
+<main class="profile-page">
+  <section class="profile-hero">
+    <div class="container profile-hero-inner">
+      <div>
+        <p class="eyebrow"><%= current_user.email %></p>
+        <h1><%= t("mall_expert.profile.heading") %></h1>
+        <p><%= t("mall_expert.profile.subtitle") %></p>
+      </div>
+      <div class="profile-actions">
+        <%= link_to t("mall_expert.nav.work"), malls_path(locale: I18n.locale), class: "secondary-button" %>
+        <%= link_to t("mall_expert.profile.export"), export_profile_path(locale: I18n.locale), class: "primary-button" %>
+      </div>
+    </div>
+  </section>
+
+  <section class="container profile-stats">
+    <div class="metric">
+      <span><%= t("mall_expert.profile.total") %></span>
+      <strong><%= @evaluations.count %></strong>
+    </div>
+    <div class="metric">
+      <span><%= t("mall_expert.profile.average") %></span>
+      <strong><%= @average_rating || "—" %></strong>
+    </div>
+    <div class="metric">
+      <span><%= t("mall_expert.profile.themes") %></span>
+      <strong><%= @by_theme.keys.count %></strong>
+    </div>
+    <div class="metric metric-wide">
+      <span><%= t("mall_expert.profile.best") %></span>
+      <strong><%= @top_evaluation ? @top_evaluation.mall_item.localized_name : "—" %></strong>
+    </div>
+  </section>
+
+  <section class="container profile-layout">
+    <aside class="theme-breakdown">
+      <h2><%= t("mall_expert.profile.by_theme") %></h2>
+      <% if @by_theme.any? %>
+        <div class="theme-list">
+          <% @by_theme.each do |theme_key, count| %>
+            <% theme_name = I18n.locale == :en ? theme_key[2] : theme_key[1] %>
+            <div class="theme-pill">
+              <span><%= theme_name %></span>
+              <strong><%= count %></strong>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="muted"><%= t("mall_expert.profile.empty") %></p>
+      <% end %>
+    </aside>
+
+    <section class="evaluation-history">
+      <div class="section-title">
+        <h2><%= t("mall_expert.profile.recent") %></h2>
+      </div>
+
+      <% if @evaluations.any? %>
+        <div class="evaluation-list">
+          <% @evaluations.each do |evaluation| %>
+            <article class="evaluation-row">
+              <div>
+                <p class="mall-theme"><%= evaluation.mall_item.theme.localized_name %></p>
+                <h3><%= evaluation.mall_item.localized_name %></h3>
+                <p class="address"><%= evaluation.mall_item.localized_address %></p>
+                <p class="comment"><%= evaluation.comment.presence || t("mall_expert.profile.no_comment") %></p>
+              </div>
+              <div class="score-block">
+                <strong><%= evaluation.rating %></strong>
+                <span style="--score: <%= evaluation.rating %>%"></span>
+              </div>
+            </article>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="profile-empty">
+          <p><%= t("mall_expert.profile.empty") %></p>
+          <%= link_to t("mall_expert.nav.work"), malls_path(locale: I18n.locale), class: "primary-button" %>
+        </div>
+      <% end %>
+    </section>
+  </section>
+</main>
