@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.3.11"
 
 gem "rails", "~> 8.0.0"
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.7"
 gem "puma", ">= 5.0"
 gem "bcrypt", "~> 3.1"
 gem "csv", "~> 3.3"
